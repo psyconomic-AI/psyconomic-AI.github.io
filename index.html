@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Psyconomic</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --black:#0a0a0a;--white:#ffffff;--off:#fafaf9;
+  --g100:#ececea;--g300:#aaa;--g400:#888;--g500:#666;--g600:#444;
+  --sans:'Inter',-apple-system,sans-serif;
+  --serif:'Newsreader',Georgia,serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--black);background:var(--white);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--g100)}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;
+  justify-content:space-between;padding:0 2.5rem;height:60px}
+.nav-logo{display:flex;align-items:center}
+.nav-logo img{height:32px}
+.nav-right{display:flex;align-items:center;gap:1.5rem}
+.nav-right a{font-size:0.825rem;font-weight:450;color:var(--g500);transition:color .15s}
+.nav-right a:hover{color:var(--black)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;
+  padding:6rem 2rem;position:relative;overflow:hidden}
+.hero-canvas{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-content{position:relative;z-index:1}
+.hero h1{
+  font-family:var(--serif);font-size:clamp(2.4rem,5.5vw,4.5rem);
+  font-weight:400;line-height:1.12;letter-spacing:-0.025em;
+  max-width:760px;margin:0 auto 1.5rem;
+  opacity:0;animation:fadeUp .9s ease forwards .3s;
+}
+.hero-sub{
+  font-size:clamp(0.95rem,1.6vw,1.1rem);line-height:1.75;
+  color:var(--g500);max-width:520px;margin:0 auto;
+  opacity:0;animation:fadeUp .9s ease forwards .55s;
+}
+
+/* WHAT WE DO */
+.what{padding:6rem 2rem;max-width:1200px;margin:0 auto}
+.what-inner{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.what-left{position:sticky;top:6rem}
+.what-eyebrow{font-size:.65rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--g400);margin-bottom:.6rem}
+.what-title{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);
+  font-weight:400;line-height:1.25;letter-spacing:-0.015em}
+.what-cards{display:flex;flex-direction:column;gap:1.5rem}
+.wc{border:1px solid var(--g100);border-radius:14px;padding:2rem;
+  transition:border-color .25s,transform .25s}
+.wc:hover{border-color:var(--g300);transform:translateY(-2px)}
+.wc h3{font-size:.95rem;font-weight:600;margin-bottom:.4rem;letter-spacing:-0.01em}
+.wc p{font-size:.85rem;line-height:1.65;color:var(--g500)}
+
+/* NUMBERS */
+.nums-bg{background:var(--black);color:var(--white);overflow:hidden;position:relative}
+.nums-wave{position:absolute;inset:0;pointer-events:none;opacity:.06}
+.nums-inner{max-width:1200px;margin:0 auto;padding:5rem 2.5rem;position:relative;z-index:1}
+.nums-head{text-align:center;margin-bottom:3.5rem}
+.nums-head h2{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);
+  font-weight:400;letter-spacing:-0.015em;line-height:1.25}
+.nums-head p{font-size:.9rem;color:var(--g400);margin-top:.5rem}
+.nums-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+  border-top:1px solid rgba(255,255,255,.08)}
+.nc{padding:2.5rem 1rem 2.5rem 0;text-align:center}
+.nc-val{font-family:var(--serif);font-size:2.6rem;font-weight:400;
+  line-height:1;letter-spacing:-0.03em;margin-bottom:.35rem}
+.nc-lab{font-size:.75rem;color:var(--g400);line-height:1.4}
+
+/* UPCOMING PRODUCT */
+.product{padding:6rem 2rem;max-width:1200px;margin:0 auto}
+.product-card{
+  background:var(--off);border:1px solid var(--g100);border-radius:20px;
+  overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:420px;
+  transition:border-color .3s}
+.product-card:hover{border-color:var(--g300)}
+.product-text{padding:3.5rem;display:flex;flex-direction:column;justify-content:center}
+.product-badge{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--g400);margin-bottom:1.2rem;
+}
+.product-badge::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:#22c55e;animation:pulse 2s ease infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.product-name{font-family:var(--serif);font-size:2.2rem;font-weight:400;
+  letter-spacing:-0.02em;margin-bottom:.75rem;line-height:1.2}
+.product-desc{font-size:.95rem;line-height:1.7;color:var(--g500);max-width:380px}
+.product-visual{
+  background:var(--black);display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden}
+.product-visual canvas{position:absolute;inset:0;width:100%;height:100%}
+.pv-center{position:relative;z-index:1;text-align:center}
+.pv-icon{
+  width:64px;height:64px;border:2px solid rgba(255,255,255,.15);
+  border-radius:16px;display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1rem;backdrop-filter:blur(8px);
+  background:rgba(255,255,255,.04)}
+.pv-icon svg{width:28px;height:28px}
+.pv-soon{font-size:.7rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:.12em;color:rgba(255,255,255,.3)}
+
+/* MISSION */
+.mission{padding:6rem 2rem;text-align:center;border-top:1px solid var(--g100)}
+.mission p{
+  font-family:var(--serif);font-size:clamp(1.3rem,2.5vw,1.9rem);
+  font-weight:400;line-height:1.55;color:var(--g500);
+  max-width:680px;margin:0 auto}
+.mission em{font-style:italic;color:var(--black)}
+
+/* CTA */
+.cta{
+  background:var(--black);color:var(--white);
+  padding:5rem 2.5rem;text-align:center}
+.cta h2{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.6rem);
+  font-weight:400;letter-spacing:-0.02em;margin-bottom:.6rem}
+.cta p{font-size:.9rem;color:var(--g400);margin-bottom:2rem}
+.cta-btn{
+  display:inline-block;background:var(--white);color:var(--black);
+  padding:.75rem 2.2rem;border-radius:999px;font-weight:600;font-size:.9rem;
+  transition:opacity .15s,transform .15s}
+.cta-btn:hover{opacity:.85;transform:translateY(-1px)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--g100);padding:2rem 2.5rem;
+  max-width:1200px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:.75rem;color:var(--g400);flex-wrap:wrap;gap:1rem}
+footer a{transition:color .15s}
+footer a:hover{color:var(--black)}
+.footer-links{display:flex;gap:1.5rem}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+
+/* MOBILE */
+@media(max-width:900px){
+  .what-inner{grid-template-columns:1fr;gap:2.5rem}
+  .what-left{position:static}
+  .nums-grid{grid-template-columns:1fr 1fr}
+  .product-card{grid-template-columns:1fr}
+  .product-visual{min-height:280px}
+}
+@media(max-width:600px){
+  .nav-right .desk{display:none}
+  .nav-inner{padding:0 1.25rem}
+  .hero{padding:6rem 1.5rem}
+  .what{padding:4rem 1.5rem}
+  .product{padding:4rem 1.5rem}
+  .nums-grid{grid-template-columns:1fr}
+  .nums-inner{padding:3.5rem 1.5rem}
+  .product-text{padding:2.5rem}
+  .cta{padding:4rem 1.5rem}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero h1,.hero-sub{animation:none;opacity:1}
+  .reveal{opacity:1;transform:none;transition:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="logo.png" alt="Psyconomic">
+    </a>
+    <div class="nav-right">
+      <a href="#what" class="desk">Research</a>
+      <a href="#product" class="desk">Product</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-content">
+    <h1>We're rethinking how neural networks scale</h1>
+    <p class="hero-sub">Psyconomic is an AI research company building neural architectures that deliver frontier intelligence at constant cost so AI can reach everyone, not just those who can afford it.</p>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="what" id="what">
+  <div class="what-inner">
+    <div class="what-left reveal">
+      <div class="what-eyebrow">What We're Building</div>
+      <h2 class="what-title">Replacing the assumptions that make AI expensive</h2>
+    </div>
+    <div class="what-cards">
+      <div class="wc reveal">
+        <h3>Constant-cost inference</h3>
+        <p>Current AI models get more expensive the longer you talk to them. We've built an architecture where every token costs the same, first or millionth.</p>
+      </div>
+      <div class="wc reveal">
+        <h3>Memory that persists</h3>
+        <p>Today's AI forgets everything when you close a chat. Our architecture saves its state to disk and picks up exactly where it left off, no re-reading, no re-computing.</p>
+      </div>
+      <div class="wc reveal">
+        <h3>Intelligence at the edge</h3>
+        <p>Our models are designed to run on devices with limited power like phones, robots, and vehicles, not just massive data centers.</p>
+      </div>
+      <div class="wc reveal">
+        <h3>A new kind of attention</h3>
+        <p>We replace global self-attention, the bottleneck behind today's AI costs, with five constant-cost mechanisms coordinated by a single learned signal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<div class="nums-bg">
+  <svg class="nums-wave" viewBox="0 0 1440 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 200C120 120,240 280,360 200S600 80,720 200S960 320,1080 200S1320 120,1440 200" stroke="#fff" stroke-width="1.5" fill="none"/>
+    <path d="M0 220C140 140,280 300,400 220S620 100,750 220S980 340,1100 220S1340 140,1440 220" stroke="#fff" stroke-width="1" fill="none"/>
+  </svg>
+  <div class="nums-inner">
+    <div class="nums-head reveal">
+      <h2>Built different, by the numbers</h2>
+      <p>Early benchmarks against transformer baselines</p>
+    </div>
+    <div class="nums-grid reveal">
+      <div class="nc"><div class="nc-val">3.4×</div><div class="nc-lab">Better recall</div></div>
+      <div class="nc"><div class="nc-val">O(1)</div><div class="nc-lab">Inference cost</div></div>
+      <div class="nc"><div class="nc-val">130K×</div><div class="nc-lab">Smaller state</div></div>
+      <div class="nc"><div class="nc-val">13.5×</div><div class="nc-lab">Cheaper at scale</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- UPCOMING PRODUCT -->
+<section class="product" id="product">
+  <div class="product-card reveal">
+    <div class="product-text">
+      <div class="product-badge">Upcoming</div>
+      <h2 class="product-name">Our first product is on the way</h2>
+      <p class="product-desc">An AI built on our patented architecture with constant-cost inference, persistent memory, and the ability to run anywhere. We're not optimizing the old paradigm. We're replacing it.</p>
+    </div>
+    <div class="product-visual">
+      <canvas id="prodCanvas"></canvas>
+      <div class="pv-center">
+        <div class="pv-icon">
+          <svg viewBox="0 0 28 28" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round">
+            <path d="M3 18C7 12,11 22,15 16S23 8,25 14"/>
+            <circle cx="14" cy="14" r="11" opacity=".25"/>
+          </svg>
+        </div>
+        <div class="pv-soon">Coming Soon</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission reveal">
+  <p>90% of the world cannot afford frontier AI today. We believe that's an architecture problem, not a business model problem, and we're building the <em>fix</em>.</p>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Psyconomic</span>
+  <div class="footer-links">
+    <a href="https://psyconomic.com">psyconomic.com</a>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')})
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Hero wave animation
+(function(){
+  const c=document.getElementById('heroCanvas');
+  if(!c)return;
+  const ctx=c.getContext('2d');
+  let w,h,t=0;
+  function resize(){w=c.width=c.offsetWidth*devicePixelRatio;h=c.height=c.offsetHeight*devicePixelRatio;ctx.scale(devicePixelRatio,devicePixelRatio)}
+  resize();window.addEventListener('resize',resize);
+  function draw(){
+    const cw=c.offsetWidth,ch=c.offsetHeight;
+    ctx.clearRect(0,0,cw,ch);
+    for(let i=0;i<5;i++){
+      ctx.beginPath();
+      ctx.strokeStyle=`rgba(10,10,10,${0.025-i*0.004})`;
+      ctx.lineWidth=1.5-i*0.2;
+      const yBase=ch*0.35+i*ch*0.08;
+      for(let x=0;x<=cw;x+=4){
+        const y=yBase+Math.sin(x*0.004+t+i*0.8)*40+Math.sin(x*0.007+t*0.6+i)*20;
+        x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+    }
+    t+=0.008;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// Product card canvas
+(function(){
+  const c=document.getElementById('prodCanvas');
+  if(!c)return;
+  const ctx=c.getContext('2d');
+  let w,h,t=0;
+  const dots=[];
+  function resize(){
+    w=c.width=c.offsetWidth*devicePixelRatio;
+    h=c.height=c.offsetHeight*devicePixelRatio;
+    ctx.scale(devicePixelRatio,devicePixelRatio);
+  }
+  resize();
+  for(let i=0;i<40;i++){
+    dots.push({x:Math.random()*600,y:Math.random()*500,r:Math.random()*1.5+0.5,
+      sx:Math.random()*0.3-0.15,sy:Math.random()*0.3-0.15,o:Math.random()*0.15+0.05});
+  }
+  window.addEventListener('resize',resize);
+  function draw(){
+    const cw=c.offsetWidth,ch=c.offsetHeight;
+    ctx.clearRect(0,0,cw,ch);
+    for(let i=0;i<3;i++){
+      ctx.beginPath();
+      ctx.strokeStyle=`rgba(255,255,255,${0.04-i*0.01})`;
+      ctx.lineWidth=1;
+      const yBase=ch*0.4+i*ch*0.12;
+      for(let x=0;x<=cw;x+=4){
+        const y=yBase+Math.sin(x*0.005+t+i*1.2)*30+Math.cos(x*0.008+t*0.7)*15;
+        x===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+    }
+    dots.forEach(d=>{
+      d.x+=d.sx;d.y+=d.sy;
+      if(d.x<0||d.x>cw)d.sx*=-1;
+      if(d.y<0||d.y>ch)d.sy*=-1;
+      ctx.beginPath();
+      ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,255,255,${d.o})`;
+      ctx.fill();
+    });
+    t+=0.01;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
+</body>
+</html>
