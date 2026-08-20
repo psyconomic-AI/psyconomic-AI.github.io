@@ -24,8 +24,8 @@ a{color:inherit;text-decoration:none}
   -webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--g100)}
 .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;
   justify-content:space-between;padding:0 2.5rem;height:60px}
-.nav-logo{display:flex;align-items:center}
-.nav-logo svg{height:38px;width:auto}
+.nav-logo{display:flex;align-items:center;justify-content:center;width:122px;height:36px;overflow:hidden}
+.nav-logo img{width:190px;height:190px;max-width:none;object-fit:contain;mix-blend-mode:multiply}
 .nav-right{display:flex;align-items:center;gap:1.5rem}
 .nav-right a{font-size:0.825rem;font-weight:450;color:var(--g500);transition:color .15s}
 .nav-right a:hover{color:var(--black)}
@@ -179,10 +179,7 @@ footer a:hover{color:var(--black)}
 <header class="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <svg viewBox="0 0 220 50" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 18 C40 18, 50 6, 70 6 S95 26, 115 16 S135 4, 155 10 S180 22, 200 14" stroke="#0a0a0a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <text x="28" y="44" font-family="Inter, -apple-system, sans-serif" font-size="22" font-weight="600" fill="#0a0a0a" letter-spacing="-0.5">psyconomic</text>
-      </svg>
+      <img src="logo.png" alt="Psyconomic">
     </a>
     <div class="nav-right">
       <a href="#what" class="desk">Research</a>
@@ -195,8 +192,8 @@ footer a:hover{color:var(--black)}
 <section class="hero">
   <canvas class="hero-canvas" id="heroCanvas"></canvas>
   <div class="hero-content">
-    <h1>We're rethinking how neural networks scale</h1>
-    <p class="hero-sub">Psyconomic is an AI research company building neural architectures that deliver frontier intelligence at constant cost so AI can reach everyone, not just those who can afford it.</p>
+    <h1>We're rethinking how neural networks remember</h1>
+    <p class="hero-sub">Psyconomic is an AI research company developing WINA, a memory-native neural architecture designed to use bounded recurrent processing and selective persistent recall instead of repeatedly processing an entire history.</p>
   </div>
 </section>
 
@@ -205,24 +202,24 @@ footer a:hover{color:var(--black)}
   <div class="what-inner">
     <div class="what-left reveal">
       <div class="what-eyebrow">What We're Building</div>
-      <h2 class="what-title">Replacing the assumptions that make AI expensive</h2>
+      <h2 class="what-title">Building and testing a different path for long-context AI</h2>
     </div>
     <div class="what-cards">
       <div class="wc reveal">
-        <h3>Constant-cost inference</h3>
-        <p>Current AI models get more expensive the longer you talk to them. We've built an architecture where every token costs the same, first or millionth.</p>
+        <h3>Bounded recurrent inference</h3>
+        <p>WINA is designed to update a fixed-size recurrent state instead of attending over every historical token. Small-scale tests showed nearly flat recurrent step timing across the tested sequence lengths.</p>
       </div>
       <div class="wc reveal">
-        <h3>Memory that persists</h3>
-        <p>Today's AI forgets everything when you close a chat. Our architecture saves its state to disk and picks up exactly where it left off, no re-reading, no re-computing.</p>
+        <h3>Selective persistent memory</h3>
+        <p>A planner and recall block retrieve bounded, relevant evidence from persistent external memory. Small integration tests have exercised retrieval, conflict handling, feedback logging, and cross-session memory flow.</p>
       </div>
       <div class="wc reveal">
-        <h3>Intelligence at the edge</h3>
-        <p>Our models are designed to run on devices with limited power like phones, robots, and vehicles, not just massive data centers.</p>
+        <h3>Designed for efficient deployment</h3>
+        <p>Because active neural state is bounded by design, WINA is intended for efficient deployment on servers and, after further optimization and validation, edge systems such as robots and private devices.</p>
       </div>
       <div class="wc reveal">
-        <h3>A new kind of attention</h3>
-        <p>We replace global self-attention, the bottleneck behind today's AI costs, with five constant-cost mechanisms coordinated by a single learned signal.</p>
+        <h3>A different sequence architecture</h3>
+        <p>WINA combines wave retention, surprise-weighted associative memory, a fixed recent buffer, shift mixing, learned routing, and selective external recall without mandatory global self-attention over all stored history.</p>
       </div>
     </div>
   </div>
@@ -236,14 +233,14 @@ footer a:hover{color:var(--black)}
   </svg>
   <div class="nums-inner">
     <div class="nums-head reveal">
-      <h2>Built different, by the numbers</h2>
-      <p>Early benchmarks against transformer baselines</p>
+      <h2>Research progress, by the numbers</h2>
+      <p>Current small-scale engineering evidence, not production claims</p>
     </div>
     <div class="nums-grid reveal">
-      <div class="nc"><div class="nc-val">3.4×</div><div class="nc-lab">Better recall</div></div>
-      <div class="nc"><div class="nc-val">O(1)</div><div class="nc-lab">Inference cost</div></div>
-      <div class="nc"><div class="nc-val">130K×</div><div class="nc-lab">Smaller state</div></div>
-      <div class="nc"><div class="nc-val">13.5×</div><div class="nc-lab">Cheaper at scale</div></div>
+      <div class="nc"><div class="nc-val">32K</div><div class="nc-lab">Technical sequence path tested</div></div>
+      <div class="nc"><div class="nc-val">259M</div><div class="nc-lab">Largest WINA-style scale test</div></div>
+      <div class="nc"><div class="nc-val">A100</div><div class="nc-lab">GPU experiments completed</div></div>
+      <div class="nc"><div class="nc-val">Filed</div><div class="nc-lab">Indian patent application</div></div>
     </div>
   </div>
 </div>
@@ -253,8 +250,8 @@ footer a:hover{color:var(--black)}
   <div class="product-card reveal">
     <div class="product-text">
       <div class="product-badge">Upcoming</div>
-      <h2 class="product-name">Our first product is on the way</h2>
-      <p class="product-desc">An AI built on our patented architecture with constant-cost inference, persistent memory, and the ability to run anywhere. We're not optimizing the old paradigm. We're replacing it.</p>
+      <h2 class="product-name">A memory-native AI assistant</h2>
+      <p class="product-desc">Our first product will combine a trained WINA model, planner, and persistent recall in one conversational system. The components have been tested at small scale; larger-model training and matched-baseline evaluation are the next milestones.</p>
     </div>
     <div class="product-visual">
       <canvas id="prodCanvas"></canvas>
@@ -273,7 +270,7 @@ footer a:hover{color:var(--black)}
 
 <!-- MISSION -->
 <section class="mission reveal">
-  <p>90% of the world cannot afford frontier AI today. We believe that's an architecture problem, not a business model problem, and we're building the <em>fix</em>.</p>
+  <p>Useful AI should not need to reprocess an entire history to remember what matters. We are building and rigorously testing a more <em>memory-native</em> approach.</p>
 </section>
 
 
